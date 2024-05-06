@@ -51,12 +51,9 @@ def insertion_sort (arr):
     then merges them back to produce a sorted list."""
 
 def merge_sort(arr):
+
     n = len(arr)
-    if n == 1:
-        return arr
-    if n == 2:
-        if arr[1] < arr[0]:
-            arr[1], arr[0] = arr[0], arr[1]
+    if n <= 1:  # Terminate recursion when size is 1 or less
         return arr
 
     mid = len(arr) // 2
@@ -106,4 +103,29 @@ def quick_sort(arr):
 
 
 if __name__ == "__main__":
-    pass
+    arrays = [
+        [7, 18, 12, 8, 9, 32],
+        [5, 3, 7, 2, 5, 1, 7, 3],
+        [-5, 8, -3, 0, 12, -7, 4],
+        [],
+        ["banana", "apple", "orange", "grape", "kiwi"],
+        ["dog", "cat", "bird", "elephant", "fish"],
+        ["python", "java", "javascript", "ruby", "c++", "swift"]
+    ]
+
+    sorting_functions = [
+        bubble_sort,
+        insertion_sort,
+        merge_sort,
+        quick_sort
+    ]
+
+    for sorting_function in sorting_functions:
+        print(f"Testing {sorting_function.__name__}:")
+        for arr in arrays:
+            sorted_arr = sorting_function(arr.copy())
+
+            if arr:
+                print(f"Input array: {arr}")
+                print(f"Sorted array: {sorted_arr}")
+                print()
