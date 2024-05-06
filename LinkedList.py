@@ -79,23 +79,35 @@ class LinkedList:
             current_node = current_node.next
         return None
 
+    def reverse(self):
+        prev = None
+        current = self.head
+        while current is not None:
+            next_node = current.next
+            current.next = prev
+            prev = current
+            current = next_node
+        self.head = prev
+        return prev
+
 
 if __name__ == '__main__':
     # Create a new linked list
     ll = LinkedList()
 
-    # Append some nodes
+    # Append nodes
     ll.append(1)
     ll.append(2)
     ll.append(3)
     ll.append(4)
 
     # Print linked list
+    print("Initial Linked List:")
     current_node = ll.head
     while current_node:
-        print('Initial Linked List: ', current_node.value, end=" -> ")
+        print(current_node.value, end=" -> ")
         current_node = current_node.next
-    #print("None")
+    print("None")
 
     # Find and delete a node with value 3
     ll.delete_node(3)
@@ -105,14 +117,22 @@ if __name__ == '__main__':
     ll.insert_node(node_2, 5)
 
     # Print the updated linked list
+    print("\nUpdated Linked List:")
     current_node = ll.head
     while current_node:
-        print('Updated Linked List: ', current_node.value, end=" -> ")
+        print(current_node.value, end=" -> ")
         current_node = current_node.next
-    #print("None")
 
     # Get the value at index 1
     value_at_index_1 = ll.get_index(1)
-    print("Value at index 1:", value_at_index_1)
+    print("\nValue at index 1:", value_at_index_1)
 
-#--------
+    # Reverse
+    ll.reverse()
+
+    print("\nReversed Linked List:")
+    current_node = ll.head
+    while current_node:
+        print(current_node.value, end=" -> ")
+        current_node = current_node.next
+    print("None")
