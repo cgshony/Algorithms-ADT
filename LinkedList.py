@@ -1,3 +1,9 @@
+"""
+Implementation of a singly linked list with basic functionality including:
+appending nodes, inserting a node, finding a node with a given value, getting an index,
+and reversing the linked list.
+"""
+
 class Node:
     """Initialize a new node with the given value.
     Args - value: The value to be stored in the node."""
