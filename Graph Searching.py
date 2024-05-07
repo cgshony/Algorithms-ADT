@@ -38,6 +38,27 @@ def shortest_path(predecessors, destination):
     return path[::-1]
 
 
+
+"""Depth First Search implementation"""
+
+def dfs(graph, start, end):
+
+    stack = [(start, [start])]  # start vertex and the path containing the start vertex
+    visited = set()  # Initialize an empty set for visited vertices
+
+    while stack:
+        vertex, path = stack.pop()  # Pop the vertex and corresponding path
+        if vertex not in visited:
+            if vertex == end:
+                return path  # Return the path if the end vertex is reached
+            visited.add(vertex)
+            for neighbour in graph[vertex]:
+                if neighbour not in visited:
+                    stack.append((neighbour, path + [neighbour]))  # Update with the current neighbour
+
+    return False  #if the end vertex can't be reached
+
+
 if __name__=='__main__':
     graph = {
         'A':['B','C'],
@@ -48,10 +69,14 @@ if __name__=='__main__':
         'F':[]
     }
 
-    start_vert = 'A'
-    print('Distances from the source node to each node in the graph, predecessors for each visited node visited:\n', bfs(graph, start_vert))
+    start_vertex = 'A'
+    print('Distances from the source node to each node in the graph, predecessors for each visited node visited:\n', bfs(graph, start_vertex))
 
-    distances, predecessors = bfs(graph, start_vert)
+    distances, predecessors = bfs(graph, start_vertex)
     destination_vertex = 'F'
     shortest_path_to_destination = shortest_path(predecessors, destination_vertex)
     print("Shortest path to", destination_vertex, ":", shortest_path_to_destination)
+
+    print('DFS implementation: ')
+    path = dfs(graph,start_vertex,destination_vertex)
+    print(f"Path from {start_vertex} to {destination_vertex} :{path} ")
